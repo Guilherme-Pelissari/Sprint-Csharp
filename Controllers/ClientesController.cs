@@ -101,7 +101,7 @@ namespace Sprint1CSharp.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_context.Clientes.Any(e => e.Id == id))
+                if (!await _context.Clientes.AnyAsync(e => e.Id == id))
                     return NotFound();
                 else
                     throw;
