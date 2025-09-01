@@ -64,7 +64,8 @@ namespace Sprint1CSharp.Controllers
         {
             var cliente = await _context.Clientes
                 .Include(c => c.Veiculos)
-                .FirstOrDefaultAsync(c => c.Email != null && c.Email.ToLower() == email.ToLower());
+                .FirstOrDefaultAsync(c => c.Email != null &&
+                    c.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
 
             if (cliente == null)
                 return NotFound();
@@ -90,7 +91,7 @@ namespace Sprint1CSharp.Controllers
         public async Task<IActionResult> PutCliente(int id, Cliente cliente)
         {
             if (id != cliente.Id)
-                return BadRequest("ID da URL diferente do corpo da requisição");
+                return BadRequest("ID da URL diferente do corpo da requisiï¿½ï¿½o");
 
             _context.Entry(cliente).State = EntityState.Modified;
 
